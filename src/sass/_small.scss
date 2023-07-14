@@ -1,0 +1,26 @@
+@media (min-width: 320px) {
+	.landing {
+		&__btn {
+			min-width: 300px;
+		}
+	}
+
+	.modal {
+		&__content {
+			padding: 0.8em 0.6em 0.6em;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.cyberpunk2077 {
+		padding: 1em 2em;
+		margin: 0.2em 0.6em;
+		font-size: 1.8rem;
+	}
+
+	.picture-icon,
+	.music-icon {
+		width: 67px;
+	}
+}

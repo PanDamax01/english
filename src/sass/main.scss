@@ -1,0 +1,361 @@
+@use 'reset' as *;
+@use 'colors' as *;
+@use 'animation' as *;
+
+body {
+	font-family: 'Comic Neue', cursive;
+	font-size: 2rem;
+	overflow: hidden;
+}
+
+.wrapper {
+	margin-inline: auto;
+	width: 100%;
+	max-width: 1200px;
+}
+
+.section-padding {
+	padding: 1.8em 1.2em;
+}
+
+.section-heading {
+	margin-bottom: 1em;
+	font-size: 2rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+@media (min-width: 768px) {
+	.section-heading {
+		font-size: 3.6rem;
+	}
+
+	.section-padding {
+		padding: 2.2em 2em;
+	}
+}
+
+.cyberpunk2077 {
+	display: block;
+	position: relative;
+	padding: 0.6em 1.2em;
+	margin: 0.2em;
+	color: var(--white);
+	background-color: var(--red);
+	border: none;
+	border-right: 3px solid var(--greenborder);
+	outline: none;
+	font-size: 1.6rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+	clip-path: polygon(
+		-15px 0%,
+		calc(100% + 15px) 0%,
+		calc(100% + 15px) 100%,
+		20px 100%,
+		-15px calc(100% - 35px)
+	);
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		animation: hover infinite var(--glitched-duration) linear;
+	}
+
+	&::after {
+		content: 'R-25';
+		display: block;
+		position: absolute;
+		bottom: 0px;
+		right: 15px;
+		padding: 2px 2px 0px 2px;
+		font-size: 0.6rem;
+		line-height: 9px;
+		color: var(--black);
+		background-color: var(--yellow);
+		border-left: 2px solid var(--greenborder);
+	}
+
+	&:hover::after,
+	&:focus::before {
+		animation: hoverafter infinite var(--glitched-duration) linear;
+	}
+
+	&::before {
+		content: '';
+		display: none;
+		position: absolute;
+		top: 0px;
+		left: calc(0px - 1px - var(--outside));
+		background-color: var(--red);
+		width: calc(100% + (var(--outside) * 2));
+		height: 12px;
+		border-left: 2px solid var(--greenborder);
+		border-right: 2px solid var(--greenborder);
+	}
+
+	&:hover::before,
+	&:focus::before {
+		display: block;
+		animation: hoverbefore infinite var(--glitched-duration) linear;
+	}
+}
+
+// - picture-icon music icon , meme
+.picture-icon,
+.music-icon {
+	position: absolute;
+	top: 18px;
+	right: 12px;
+	width: 58px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.music-icon {
+	right: 90px;
+}
+
+.meme {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 86%;
+	max-width: 500px;
+	background-color: var(--white);
+	transform: translate(-50%, -50%);
+
+	&::before {
+		content: 'Nie dobry mem';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: var(--red);
+		font-size: 4rem;
+		transform: translate(-50%, -50%) rotate(10deg);
+		z-index: -1;
+	}
+
+	&__img {
+		width: 100%;
+		height: 72vh;
+	}
+
+	&__btn {
+		width: 100%;
+		background-color: var(--greenborder);
+		border: none;
+		border-top: 1px solid var(--black);
+		line-height: 3.8rem;
+		transition: background-color 0.3s, color 0.3s;
+		cursor: pointer;
+
+		&:hover {
+			color: var(--greenborder);
+			background-color: var(--red);
+		}
+	}
+
+	&-btn {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		position: absolute;
+		bottom: 16px;
+		right: 16px;
+		z-index: 10;
+	}
+
+	&__icon {
+		width: 20px;
+	}
+}
+
+// - landing
+.landing {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	min-height: 100vh;
+	background-image: url('../img/0.gif');
+	background-size: cover;
+	background-position: center;
+	z-index: 0;
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.6);
+		z-index: -1;
+	}
+
+	&__btn:last-child {
+		margin-top: 2em;
+		--primary-hue: 260;
+
+		&::after {
+			background-color: var(--secondary);
+		}
+	}
+
+	&__btn {
+		position: relative;
+		height: 75px;
+		min-width: 200px;
+		color: var(--white);
+		background-color: transparent;
+		border: 0;
+		outline: transparent;
+		font-size: var(--font-size);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		line-height: 75px;
+		text-align: center;
+		text-decoration: none;
+		transition: background-color 0.3s;
+		cursor: pointer;
+
+		&:hover {
+			--primary: hsl(
+				var(--primary-hue),
+				85%,
+				calc(var(--primary-lightness, 50) * 0.8%)
+			);
+		}
+		&:active {
+			--primary: hsl(
+				var(--primary-hue),
+				85%,
+				calc(var(--primary-lightness, 50) * 0.6%)
+			);
+		}
+
+		&::after,
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			clip-path: var(--clip);
+			z-index: -1;
+		}
+
+		&::before {
+			background-color: var(--shadow-primary);
+			transform: translate(var(--border), 0);
+		}
+
+		&::after {
+			background-color: var(--primary);
+		}
+
+		&:hover .landing__glitch {
+			display: block;
+		}
+	}
+
+	&__tag {
+		position: absolute;
+		right: 5%;
+		bottom: -5%;
+		padding: 1px 4px;
+		color: var(--black);
+		background-color: var(--white);
+		font-size: var(--label-size);
+		letter-spacing: 1px;
+		line-height: 1;
+	}
+
+	&__glitch {
+		display: none;
+		position: absolute;
+		top: calc(var(--border) * -1);
+		left: calc(var(--border) * -1);
+		right: calc(var(--border) * -1);
+		bottom: calc(var(--border) * -1);
+		background-color: var(--shadow-primary);
+		text-shadow: 2px 2px var(--shadow-primary),
+			-2px -2px var(--shadow-secondary);
+		clip-path: var(--clip);
+		animation: glitch 2s infinite;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: calc(var(--border) * 1);
+			right: calc(var(--border) * 1);
+			bottom: calc(var(--border) * 1);
+			left: calc(var(--border) * 1);
+			clip-path: var(--clip);
+			background-color: var(--primary);
+			z-index: -1;
+		}
+	}
+}
+
+// - modal
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding-top: 2em;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 15px;
+	width: 80%;
+	max-width: 500px;
+	background-color: var(--black);
+	clip-path: polygon(
+		0px 25px,
+		26px 0px,
+		calc(60% - 25px) 0px,
+		60% 25px,
+		100% 25px,
+		100% calc(100% - 10px),
+		calc(100% - 15px) calc(100% - 10px),
+		calc(80% - 10px) calc(100% - 10px),
+		calc(80% - 15px) calc(100% - 0px),
+		10px calc(100% - 0px),
+		0% calc(100% - 10px)
+	);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	z-index: -1;
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		padding: 0.8em 0.4em 0.6em 0.6em;
+		background-color: var(--yellow);
+	}
+
+	&__text {
+		margin-bottom: 0.6em;
+		width: 100%;
+	}
+}
+
+.open {
+	opacity: 1;
+	z-index: 1;
+	animation: imgGlitch 1s ease-in-out;
+}
+
+.filter {
+	user-select: none;
+	pointer-events: none;
+	background-image: url('../img/glitch.gif') !important;
+}
+
+@import 'small';
+@import 'medium';
